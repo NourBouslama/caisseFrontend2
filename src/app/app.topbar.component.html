@@ -1,0 +1,66 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+
+        <span *ngIf="authService.isAdmin()">Partie Administrateur</span>
+        <span *ngIf="authService.isCaissier()">Partie Caissier</span>
+    </a>
+    <a class="p-link layout-menu-button layout-topbar-button" href="#" (click)="appMain.toggleMenu($event)">
+        <i class="pi pi-bars"></i>
+    </a>
+    <br>
+
+
+
+ 
+
+    <a class="p-link layout-topbar-menu-button layout-topbar-button" href="#" (click)="appMain.toggleTopMenu($event)">
+        <i class="pi pi-ellipsis-v"></i>
+    </a>
+
+    <div class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active':appMain.topMenuActive}">
+         <a href="#" class="p-link layout-topbar-button">
+       
+        </a>
+        <a href="#" class="p-link layout-topbar-button">
+       
+        </a>
+   
+       
+          
+    
+
+        <!--
+
+        
+        <a  class="p-link layout-topbar-button">
+            <i class="pi pi-user"></i>
+            <div class="dropdown-menu">
+                <a  *ngIf="!authService.isloggedIn"  class="dropdown-item" href="#" routerLink="connection" >login</a>
+                <a  *ngIf="!authService.isloggedIn"  class="dropdown-item" href="#" (click) = "onLogout()">logout</a>
+              
+                </div>
+            <span>Profile</span>
+        </a>
+        <ul class="navbar-nav ml-auto" >
+            <li> <a class="nav-link">{{authService.loggedUser}}</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Connexion
+                </a>
+        <div class="dropdown-menu">
+        <a  *ngIf="!authService.isloggedIn"  class="dropdown-item" href="#" routerLink="connection" >login</a>
+        <a  *ngIf="!authService.isloggedIn"  class="dropdown-item" href="#" (click) = "onLogout()">logout</a>
+        <a class="dropdown-item" href="#">Profile</a>
+        </div>
+        </li>
+        </ul>
+    </div>
+
+      <button  pButton pRipple type="button" label="synchroniser"
+    icon="pi pi-power-off" class="p-button-rounded p-button-primary mr-2 mb-2" (click)="synchroniser()"></button><br>
+    -->
+  
+    <p-splitButton label="{{authService.loggedUser}}" icon="pi pi-user" styleClass="p-button-outlined  p-button-success mr-2 mb-2" [model]="this.items" >
+       
+    </p-splitButton>
+ 
+</div>

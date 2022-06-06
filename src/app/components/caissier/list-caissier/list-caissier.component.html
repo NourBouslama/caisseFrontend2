@@ -1,0 +1,60 @@
+<div class="col-12">
+    <div class="card">
+      <h5>Caissier</h5>
+        <p-table [value]="caissiers">
+            <ng-template pTemplate="header">
+                <tr>
+
+                    <th colspan="5">
+                       <h3 class="mb-0">Liste des Caissiers</h3>
+                    </th>
+                    <p-toast position="top-right" key="myKey1"></p-toast>
+                <td><button pButton pRipple label="Nouveau caissier" type="button" icon="pi pi-user-plus"
+                    class="p-button-rounded p-button-primary" routerLink="/add-caissier"></button></td>
+              </tr>
+                <tr>
+                        <th scope="col">Matricule</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Etat</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-cais >
+                <tr>
+                    <td>
+                      {{cais.matricule}}
+                    </td>
+                    <td>
+                     {{cais.prenom}}
+                   </td>
+                   <td>
+                     {{cais.nom}}
+                   </td>
+                   <td>
+                     {{cais.etat}}
+                   </td>
+                   <td> <div *ngIf=" cais.etat== 'activé'">
+                    <button pButton pRipple type="button" label="Désactiver"  class="p-button-rounded p-button-secondary mr-2 mb-2" (click)="DesactiverCaissier(cais)"></button>
+                   </div>
+                   <div *ngIf="cais.etat== 'desactivé'">
+                    <button pButton pRipple type="button" label="Activer" icon="pi pi-power-off" class="p-button-rounded p-button-success mr-2 mb-2" (click)="ActiverCaissier(cais)"></button>
+                   </div>
+                  </td>
+                
+                   <td><button pButton pRipple type="button" label="Modifier" icon="pi pi-user-edit" class="p-button-rounded p-button-warning mr-2 mb-2" [routerLink]="['/Update-caissier',cais.idU]" ></button></td>
+                   <td><button pButton pRipple [routerLink]="['/consulter-caissier',cais.idU]"  icon="pi pi-external-link" type="button" label="Consulter" class="p-button-rounded p-button-info mr-2 mb-2"></button></td>
+
+                     </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+              <div class="flex align-items-center justify-content-between">
+                 Totalement il y a {{caissiers ? caissiers.length : 0 }} caissiers.
+              </div>
+          </ng-template>
+        </p-table>
+    </div>
+</div>
+

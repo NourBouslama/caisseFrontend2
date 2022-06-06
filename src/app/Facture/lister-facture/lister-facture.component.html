@@ -1,0 +1,52 @@
+<div class="col-12 lg:col-6">
+    <div class="card">
+        <h5>Tooltip</h5>
+        <div class="formgroup-inline">
+            <div class="field">
+                <label for="firstname5" class="p-sr-only">Référence :</label>
+                <p-dropdown [options]="ListeReference"   [(ngModel)]="selectedReference"  placeholder="Select a reference" ></p-dropdown>
+                <input id="reference" type="number" [(ngModel)]="reference" pInputText >
+            </div>
+            <button pButton pRipple type="button" label="Chercher" type="submit"  [routerLink]="['/listerFactures',reference]" class="btn btn-success"></button>
+        </div>
+    </div>
+</div>
+<div class="grid p-fluid">
+	<div class="col-12 md:col-9">
+		<div class="card" *ngFor="let facture of Factures"  >
+            <h3 class="mb-0">Liste des Factures</h3>
+
+
+            <h5>Référence Facture :</h5>
+			<span class="p-float-label">
+				<input pInputText id="referenceFact" type="number"  [(ngModel)]="facture.referenceFact"/>
+			</span>
+
+            <h5>Montant :</h5>
+			<span class="p-float-label">
+				<input pInputText id="montant" type="number"  [(ngModel)]="facture.montant"/>
+			</span>
+
+            <h5>Période de consommation :</h5>
+			<span class="p-float-label">
+				<input pInputText id="periodeCons" type="date"  [(ngModel)]="facture.periodeCons"/>
+			</span>
+
+            <h5>Etat :</h5>
+			<span class="p-float-label">
+				<input pInputText id="etat" type="text"  [(ngModel)]="facture.etat" />
+			</span>
+
+            <h5>Date finale :</h5>
+			<span class="p-float-label">
+				<input pInputText id="dateF" type="date" [(ngModel)]="facture.dateF" />
+			</span>
+<br><br>
+<br>
+<br>
+        </div>
+
+
+	</div>
+
+</div>

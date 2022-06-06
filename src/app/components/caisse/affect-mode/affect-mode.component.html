@@ -1,0 +1,78 @@
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card">
+
+            <h2>Affecter les modes de paiement à la caisse</h2>
+            <br>
+
+
+            <h5>Numéro caisse</h5>
+            <span class="p-float-label">
+                <input pInputText id="username" type="text" [(ngModel)]="newCaisse.numC"/>
+            </span>
+            <br><br>
+         <!--
+<h5>Les modes de paiements</h5>
+            <span class="p-float-label">
+                <p-listbox [options]="modes" [checkbox]="true" [multiple]="true" [(ngModel)]="selectedModesCode" (onSelectAll)="onSelectAll($event)">
+                    <ng-template let-mode pTemplate="item">
+                        <div >
+                            <div>{{mode.libelle}}</div>
+                        </div>
+                    </ng-template>
+                </p-listbox>
+            </span>
+         --> 
+
+            <br><br>
+            <p-multiSelect [options]="modesPaiement" [(ngModel)]="newCaisse.modes" display="chip" defaultLabel="Select modes" optionLabel="libelle" class="multiselect-custom">
+                
+    <!--
+<ng-template let-value pTemplate="selectedItems">
+                    <div class="country-item country-item-value" *ngFor="let m of selectedModes">
+                        <div>{{m.libelle}}</div>
+                    </div>
+                    <div *ngIf="!selectedCountries || selectedCountries.length === 0" class="country-placeholder">
+                        Select Countries
+                    </div>
+                </ng-template>
+    -->         
+                <ng-template let-mode pTemplate="item">
+                    <div class="country-item">
+                        <div>{{mode.libelle}}</div>
+                    </div>
+                </ng-template>
+              
+            </p-multiSelect>
+            <br><br><br>
+            {{newCaisse.modes | json}}
+            <!--
+     {{selectedModes | json}}
+            -->
+       
+            <span>
+                <td><button pButton pRipple label="ajouter" type="submit" icon="pi pi-plus"
+                        class="p-button-rounded p-button-primary"  routerLink="/Caisse" (click)="addCaisse()"></button></td>
+
+            </span>
+
+       
+            <!--
+<h5>Etat</h5>
+			<span class="p-float-label">
+				<input pInputText id="username" type="text" />
+			</span>
+        -->
+
+
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+</div>

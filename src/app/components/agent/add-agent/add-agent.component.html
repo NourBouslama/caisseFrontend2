@@ -1,0 +1,66 @@
+<form [formGroup]="confirm">
+<div class="grid p-fluid">
+	<div class="col-12">
+		<div class="card">
+			<p-table >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th colspan="2"><button  class="p-button-secondary p-button-text"  pButton pRipple type="button"  [routerLink]="['/Agent']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Ajouter agent</h3></th>
+                    </tr>
+                    </ng-template></p-table>
+		<h5>Matricule :</h5>
+		<span class="p-float-label">
+			<input pInputText id="nom" type="text"  [(ngModel)]="newAgent.matricule" formControlName="matricule"/>
+			<small *ngIf="confirm.get('matricule').invalid" class="text-danger">Matricule obligatoire</small>
+
+
+		</span>
+            <h5>Nom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="nom" type="text"  [(ngModel)]="newAgent.nom" formControlName="nom"/>
+				<small *ngIf="confirm.get('nom').invalid" class="text-danger">Nom obligatoire</small>
+
+			</span>
+            <h5>Prénom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="prenom" type="text"  [(ngModel)]="newAgent.prenom" formControlName="prenom"/>
+				<small *ngIf="confirm.get('prenom').invalid" class="text-danger">Prénom obligatoire</small>
+
+			</span>
+            <h5>Email :</h5>
+			<span class="p-float-label">
+				<input pInputText id="email" placeholder="exemple@gmail.com" type="email"  [(ngModel)]="newAgent.email" formControlName="email"/>
+				<small *ngIf="confirm.get('email').invalid" class="text-danger">Adresse mail obligatoire</small>
+
+			</span>
+            <h5>Adresse :</h5>
+			<span class="p-float-label">
+				<input pInputText id="adresse" type="text"  [(ngModel)]="newAgent.adresse" formControlName="adresse"/>
+				<small *ngIf="confirm.get('adresse').invalid" class="text-danger"> Adresse obligatoire</small>
+
+			</span>
+            <h5>Secteur :</h5>
+			<span class="p-float-label">
+				<input pInputText id="secteur" type="text" [(ngModel)]="newAgent.secteur" required formControlName="secteur"/>
+				<small *ngIf="confirm.get('secteur').invalid" class="text-danger"> secteur obligatoire</small>
+
+
+			</span>
+		
+		<h5>Mot de passe :</h5>
+	
+		<p-password [(ngModel)]="newAgent.motDePasse" [toggleMask]="true" promptLabel="entrer le mot de passe" formControlName="motdp" [feedback]="false"></p-password>
+		<small *ngIf="confirm.get('motdp').invalid" class="text-danger">Mot de passe obligatoire </small>
+
+<br><br>
+<br>
+<br>
+            <button pButton pRipple type="button" label="Ajouter" type="submit"  (click)="ajouterAgent()" icon="pi pi-plus" class="p-button-rounded p-button-primary" [style]="{'width': '40%'}" [disabled]="confirm.invalid"></button>
+		</div>
+
+
+	</div>
+</div>
+
+</form>

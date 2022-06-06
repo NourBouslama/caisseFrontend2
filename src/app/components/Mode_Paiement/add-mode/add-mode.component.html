@@ -1,0 +1,29 @@
+<form [formGroup]="confirm">
+<div class="grid p-fluid">
+	<div class="col-12">
+		<div class="card">
+			<p-table >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th ><button  class="p-button-secondary p-button-text mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/ModePaiement']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Ajouter nouveau mode de paiement</h3></th>
+                    </tr>
+                    </ng-template></p-table>
+        
+		<br>
+			<h5>Libelle</h5>
+			<span class="p-float-label">
+				<input pInputText id="username" type="text" [(ngModel)]="newMode.libelle" formControlName="libelle"/>
+				<small *ngIf="confirm.get('libelle').invalid " class="text-danger"> Libelle est obligatoire</small>
+
+			</span> 
+<br><br>
+            <span>
+                
+					<button pButton pRipple label="Ajouter" type="submit" [style]="{'width': '40%'}" (click)="addMode()"  icon="pi pi-plus" class="p-button-rounded p-button-primary" [disabled]="confirm.invalid"></button>
+             
+            </span>
+		</div>
+	</div>
+</div>
+</form>

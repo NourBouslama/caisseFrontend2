@@ -1,0 +1,46 @@
+<div class="grid p-fluid">
+	<div class="col-12 md:col-9">
+		<div class="card">
+            <div>
+            <button  pButton pRipple type="button"  class="p-button-secondary p-button-text mr-2 mb-2" [routerLink]="['/agents']" >Retour</button>
+            <h3 class="mb-0">Liste des Agents des coupures</h3>
+
+        </div>
+        <h5>Matricule :</h5>
+			<span class="p-float-label">
+				<input pInputText id="matricule" type="text"  [(ngModel)]="newAgent.matricule"/>
+
+			</span>
+            <h5>Nom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="nom" type="text"  [(ngModel)]="newAgent.nom"/>
+
+			</span>
+            <h5>Prénom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="prenom" type="text"  [(ngModel)]="newAgent.prenom"/>
+
+			</span>
+            <h5>Email :</h5>
+			<span class="p-float-label">
+				<input pInputText id="email" placeholder="exemple@gmail.com" type="email"  [(ngModel)]="newAgent.email"/>
+
+			</span>
+            <h5>Adresse :</h5>
+			<span class="p-float-label">
+				<input pInputText id="adresse" type="text"  [(ngModel)]="newAgent.adresse" />
+
+			</span>
+            <h5>Secteur :</h5>
+			<span class="p-float-label">
+				<input pInputText id="secteur" type="text" [(ngModel)]="newAgent.secteur" />
+
+			</span>
+<br><br>
+<br>
+<br>
+            <button pButton pRipple type="button" label="Ajouter" type="submit"  (click)="ajouterAgent()" class="btn btn-success"></button>
+		</div>
+
+
+	</div>

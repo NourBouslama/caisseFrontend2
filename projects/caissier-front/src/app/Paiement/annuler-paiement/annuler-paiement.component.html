@@ -1,0 +1,85 @@
+<div class="col-12 ">
+    <div class="card">
+        <p-table >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th >   <button class="p-button-secondary p-button-text mr-2 mb-2"   pButton pRipple type="button" [routerLink]="['/historiquePaiement']" >Retour </button></th>
+                    <th colspan="6"> <h2>Annuler Paiement</h2></th>
+                </tr>
+            </ng-template>
+        </p-table>
+     <br><br><br>
+     <p-table>
+        <ng-template pTemplate="header">
+            <tr>
+                <td>
+                    <p-dropdown [options]="ListeReference"  [(ngModel)]="selectedReference"  placeholder="Sélectionner un référence"></p-dropdown>
+                </td>
+                <td>
+                   Valeur :  <input pInputText id="reference" type="number" [(ngModel)]="reference"  >
+                </td>
+                <td>
+                    <button pButton pRipple type="button" label="Chercher" icon="pi pi-search"  (click)="chercherfacture()" class="p-button-rounded btn btn-success"></button>
+                </td>
+            </tr>
+            </ng-template>
+    </p-table>
+<br><br><br>
+
+<div class="grid p-fluid">
+	<div class="col-12 md:col-9">
+<h3 *ngIf="Factures">La liste des Factures</h3>
+            <div *ngFor="let facture of Factures">
+                <div class="card">
+
+                  <input  type="checkbox" class="custom-input" name="{{facture.referenceFact}}" [(ngModel)]="facture.isselected" (change)="onChange()">   <!-- facture,$event.target.checkbox
+
+                  <p-checkbox class="custom-input" name="{{facture.referenceFact}}" value="{{facture.referenceFact}}"  [(ngModel)]="facture.isselected" (change)="onChange()"></p-checkbox>-->
+                  <br><br><br>
+                  <p-table>
+                    <ng-template pTemplate="header">
+                           <tr>
+                            <td >
+                            </td></tr>
+                            <tr> <td>
+                                <h6>Référence : </h6>
+                            </td>
+                            <td>
+                                <h6>{{facture.referenceFact}}</h6>
+                            </td></tr>
+                            <tr><td>
+                                <h6>Montant : </h6>
+                            </td>
+                           <td>
+                            <h6>{{facture.montant}}</h6>
+                           </td></tr>
+                            <tr><td>
+                                <h6>Période de consommation : </h6>
+                            </td>
+                            <td>
+                                <h6> {{facture.periodeCons|date:'dd/MM/YYYY  HH:mm'}}</h6>
+                            </td></tr>
+                            <tr>
+                            <td>
+                                <h6>Etat : </h6>
+                            </td><td>
+                            <h6> {{facture.etat}}</h6>
+                        </td></tr>
+                            <tr><td>
+                                <h6>Date finale :</h6>
+                            </td>
+                            <td>
+                                <h6> {{facture.dateF|date:'dd/MM/YYYY  HH:mm'}} </h6>
+                            </td></tr>
+                        </ng-template>
+                </p-table>
+            </div><br>
+
+    </div>
+	</div>
+
+</div>
+<button *ngIf="Factures"   pButton pRipple type="button" label="Annuler Paiement" type="submit" style="width:190px;margin-left:699px;" (click)="annulerPaiement()" icon="pi pi-times-circle" class="p-button-rounded btn btn-success"></button>
+
+</div>
+</div>

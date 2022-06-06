@@ -1,0 +1,53 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Caisse</h5>
+            <p-table [value]="caisses" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                        <h2>Liste Des Caisses</h2>
+                        <p-toast position="top-right" key="myKey1"></p-toast>
+                        <td><button pButton pRipple label="Nouvelle caisse" type="button" icon="pi pi-plus"
+                                class="p-button-rounded p-button-primary" routerLink="/add-caisse"></button></td>
+
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th scope="col">Numéro caisse</th>
+                        <th scope="col">Intitulé caisse</th>
+                        <th scope="col">Etat</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-caisse>
+                    <tr>
+                        <td>{{caisse.numC}}</td>
+                        <td>{{caisse.intitule}}</td>
+                        <td>{{caisse.etat}}</td>
+                        <td><button *ngIf="caisse.etat ==='desactivé'" pButton pRipple type="button" label="Activer"
+                                icon="pi pi-power-off" class="p-button-rounded p-button-success"
+                                (click)="activerCaisse(caisse)"></button>
+                            <button *ngIf="caisse.etat === 'activé'" pButton pRipple type="button" label="Désactiver"
+                                class="p-button-rounded p-button-secondary" (click)="desactiverCaisse(caisse)"></button>
+                        </td>
+
+
+                        <td><button pButton pRipple type="button" label="Modifier" icon="pi pi-pencil"
+                                class="p-button-rounded p-button-warning"
+                                [routerLink]="['/Update-Caisse',caisse.idC]"></button></td>
+
+                        <td><button pButton pRipple [routerLink]="['/Consulter-Caisse',caisse.idC]"  icon="pi pi-external-link" type="button" label="Consulter" class="p-button-rounded p-button-info mr-2 mb-2"></button></td>
+
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        Totalement il y a {{caisses ? caisses.length : 0 }} caisses.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

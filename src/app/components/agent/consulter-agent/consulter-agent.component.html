@@ -1,0 +1,47 @@
+<div class="grid p-fluid">
+	<div class="col-12">
+		<div class="card">
+            <p-table >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th colspan="2"><button  class="p-button-secondary p-button-text"  pButton pRipple type="button"  [routerLink]="['/Agent']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Consulter Agent</h3></th>
+                    </tr>
+                    </ng-template></p-table>
+			<h5>Matricule :</h5>
+			<span class="p-float-label">
+				<input pInputText id="matricule" type="text"  [(ngModel)]="currentAgent.matricule" readonly/>
+
+			</span>
+            <h5>Nom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="nom" type="text"  [(ngModel)]="currentAgent.nom" readonly/>
+
+			</span>
+            <h5>Prénom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="prenom" type="text"  [(ngModel)]="currentAgent.prenom" readonly/>
+
+			</span>
+            <h5>Email :</h5>
+			<span class="p-float-label">
+				<input pInputText id="email" type="email"  [(ngModel)]="currentAgent.email" readonly/>
+
+			</span>
+            <h5>Adresse :</h5>
+			<span class="p-float-label">
+				<input pInputText id="adresse" type="text"  [(ngModel)]="currentAgent.adresse" readonly/>
+
+			</span>
+            <h5>Secteur :</h5>
+			<span class="p-float-label">
+				<input pInputText id="secteur" type="text" [(ngModel)]="currentAgent.secteur" readonly/>
+
+			</span>
+<br><br>
+<br>
+<br>
+        </div>
+
+
+	</div>

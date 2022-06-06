@@ -1,0 +1,50 @@
+<form [formGroup]="confirm">
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card">
+            <p-table >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th ><button  class="p-button-secondary p-button-text mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/Caisse']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Modifier Caisse</h3></th>
+                    </tr>
+                    </ng-template></p-table>
+            <br>
+            <h5>numéro caisse</h5>
+            <span class="p-float-label">
+                <input pInputText id="username" type="text" [(ngModel)]="currentCaisse.numC" formControlName="numero"/>
+                <small *ngIf="confirm.get('numero').invalid " class="text-danger">Numéro de caisse obligatoire</small>
+
+            </span>
+            <br><br>
+            <h5>Intitulé caisse</h5>
+            <span class="p-float-label">
+                <input pInputText id="username" type="text" [(ngModel)]="currentCaisse.intitule" formControlName="intitule"  />
+                <small *ngIf="confirm.get('intitule').invalid " class="text-danger">Intitulé obligatoire</small>
+
+            </span>
+            <br><br>
+
+    
+            <h5>Affecter les modes de paiement</h5>
+            <p-multiSelect [options]="modesPaiement" [(ngModel)]="currentCaisse.modes" display="chip"
+                defaultLabel="Select modes" optionLabel="libelle" class="multiselect-custom"  formControlName="mode">
+
+                <ng-template let-mode pTemplate="item">
+                    <div class="country-item">
+                        <div>{{mode.libelle}}</div>
+                    </div>
+                </ng-template>
+
+            </p-multiSelect>
+            <br><br><br>
+            <span>
+               <button pButton pRipple label="modifier" type="submit" [disabled]="confirm.invalid"
+                        class="p-button-rounded p-button-primary" [style]="{'width': '40%'}"   icon="pi pi-pencil" (click)="updateCaisse()"
+                        routerLink="/Caisse"></button>
+
+            </span>
+        </div>
+    </div>
+</div>
+</form>

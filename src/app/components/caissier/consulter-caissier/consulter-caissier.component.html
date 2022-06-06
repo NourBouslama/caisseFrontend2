@@ -1,0 +1,42 @@
+<div class="grid p-fluid">
+	<div class="col-12">
+		<div class="card">
+            <p-table >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th ><button  class="p-button-secondary p-button-text mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/Caissier']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Consulter Caissier</h3></th>
+                    </tr>
+                    </ng-template></p-table>
+			<h5>Matricule :</h5>
+			<span class="p-float-label">
+				<input pInputText id="matricule" type="text"  [(ngModel)]="currentCaissier.matricule" readonly/>
+
+			</span>
+            <h5>Nom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="nom" type="text"  [(ngModel)]="currentCaissier.nom" readonly/>
+
+			</span>
+            <h5>Prénom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="prenom" type="text"  [(ngModel)]="currentCaissier.prenom" readonly/>
+
+			</span>
+            <h5>Email :</h5>
+			<span class="p-float-label">
+				<input pInputText id="email" type="email"  [(ngModel)]="currentCaissier.email" readonly/>
+
+			</span>
+            <h5>Adresse :</h5>
+			<span class="p-float-label">
+				<input pInputText id="adresse" type="text"  [(ngModel)]="currentCaissier.adresse" readonly />
+
+			</span>
+<br><br>
+<br>
+<br>
+        </div>
+
+
+	</div>

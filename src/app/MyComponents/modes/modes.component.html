@@ -1,0 +1,39 @@
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+			<h5>Mode Paiement</h5>
+			<p-table responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                        <h2>Liste Des Modes de Paiement</h2>
+						<td><button pButton pRipple label="Nouveau mode de paiement" type="button" icon="pi pi-plus" class="p-button-rounded p-button-primary"></button></td>
+                        
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" >
+                    <tr>
+                        <th>Code</th>
+                        <th>Libelle</th>
+                        <th>Etat</th>
+                    
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-mode>
+                    <tr>
+                        <td>{{mode.code}}</td>
+                        <td>{{mode.libelle}}</td>
+                        <td>{{mode.etatM}}</td>
+                        <td><button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success"></button></td>
+                        <td><button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"></button></td>
+            
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        In total there are {{modes ? modes.length : 0 }} modes.
+                    </div>
+                </ng-template>
+            </p-table>
+		</div>
+	</div>
+</div>

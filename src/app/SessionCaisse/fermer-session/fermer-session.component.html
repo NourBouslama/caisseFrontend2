@@ -1,0 +1,266 @@
+<div class="card">
+    <p-table >
+        <ng-template pTemplate="header">
+            <tr>
+                <th ><button  class="p-button-secondary p-button-text mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/session']" > Retour</button></th>
+                <th colspan="6"> <h3 class="mb-0">fermeture d'une session de caisse</h3></th>
+            </tr>
+        </ng-template>
+    </p-table>
+  <p-table>
+    <ng-template pTemplate="header">
+    <tr>
+        <td> 
+           <div class="field mt-3">
+                <h5>Date d'ouverture caisse :
+                    <input  pInputText id="matricule"  value="{{currentSession.dateOuverture| date:'dd/MM/YYYY  HH:mm'}}" type="text" readonly/>
+                </h5>
+             </div>
+   
+         </td>
+         <td>
+             <br>
+            <div class="field">
+                <h5>Fermer journal de caisse:
+                    <p-checkbox value="box" name="box" trueValue="cheked" (onChange)="FermerJournalCaisse(currentSession)"> </p-checkbox>
+                 </h5>
+            </div>
+       </td>
+    </tr>
+</ng-template>
+  </p-table>
+        <h3>Repartition des montant de caisse:</h3>
+        <div>
+            <div class="field mt-3">
+                <h5>Montant intiale de caisse:
+                    <input  pInputText id="matricule" [(ngModel)]="currentSession.montantInit" type="text" readonly/>
+                </h5>
+            </div>
+        </div>
+        <p-table [value]="c.modes" (change)="valueInput()">
+            <ng-template  pTemplate="header">
+                <tr>
+                      <th>Mode Paiement</th>
+                      <th>Nombre</th>
+                      <th>Montant </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body"  let-mode>
+
+                <tr>
+                    <td *ngIf="mode.libelle!='éspece'">{{mode.libelle}}</td>
+                    <td *ngIf="mode.libelle!='éspece'"><input  pInputText id="nombre" type="number"   [style]="{'width': '20%'}" /></td>
+                    <td *ngIf="mode.libelle!='éspece'"><input  pInputText id="montantMode" type="number"   [(ngModel)]="mode.val" [style]="{'width': '30%'}" /></td>
+               
+                </tr>
+            </ng-template>
+        </p-table>
+<!--
+        <p-table [value]="currentSession.caisse.modes">
+            <ng-template  pTemplate="header">
+                <tr>
+                      <th>Mode Paiement</th>
+                      <th>Nombre</th>
+                      <th>Montant théorique</th>
+                      <th>Montant pratique</th>
+                      <th>Ecart</th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body"  let-session>
+
+          
+        
+                <tr>
+                    <th>{{session.libelle}}</th>
+                    <th>{{nb}}</th>
+                    <th [(ngModel)]="theorique">{{listerPaiementByEtatEtMode(currentSession.numS,session.libelle)}}</th>
+                    <th ><input type="number" [(ngModel)]="pratique" ></th>
+                    <th >{{ this.montant - pratique}}</th>
+                </tr>
+             
+            </ng-template>
+        </p-table>
+        
+        <p-table >
+            <ng-template pTemplate="header">
+                <tr>
+                      <th>Mode Paiement</th>
+                      <th>Nombre</th>
+                      <th>Montant théorique</th>
+                      <th>Montant pratique</th>
+                      <th>Ecart</th>
+
+                </tr>
+            
+        
+                <tr>
+                    <th>{{this.currentSession.caisse.modes[0].libelle}}</th>
+                    <th>{{nb}}</th>
+                    <th [(ngModel)]="theorique">{{this.montant}}</th>
+                    <th ><input type="number" [(ngModel)]="pratique" ></th>
+                    <th >{{ this.montant - pratique}}</th>
+                </tr>
+                <tr>
+                    <td>chéque</td>
+                    <td>{{nb1}}</td>
+                    <td></td>
+                    <td><input type="number"></td>
+                    <td></td>
+                </tr>
+            </ng-template>
+        </p-table>
+        
+      <p-table [value]="currentSession.caisse.modes" [style]="{'width': '20%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                        <th scope="col">Mode de paiement </th>
+                        
+                 </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-session >
+                <tr>
+                    <td>{{session.libelle}}</td>
+               </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="currentSession.caisse.modes" >
+            <ng-template pTemplate="header">
+                <tr>
+                        <th scope="col">Mode de paiement </th>
+                 </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-session >
+                <tr>
+                    <td>{{session.libelle}}</td>
+               </tr>
+            </ng-template>
+        </p-table>
+ --> 
+        <h3>Repartition des montant en espéce:</h3>
+        <p-table (change)="Calculer()">
+            <ng-template pTemplate="header">
+           <tr>
+               <td>Billets</td> 
+               <td><input  pInputText id="matricule" type="number" [(ngModel)]="val"  [style]="{'width': '20%'}" />
+                *50 DTN=
+               <input  pInputText id="matricul" type="number" placeholder="{{val*50}}" value="res"  [(ngModel)]="res" [style]="{'width': '30%'}" /></td>
+               <td>Pièces</td>
+               <td><input  pInputText id="matricu" type="number" [(ngModel)]="val1"  [style]="{'width': '20%'}" />
+                * 5 DTN =
+               <input  pInputText id="matric" type="number" placeholder="{{val1*5}}"  value="res1" [(ngModel)]="res1"   [style]="{'width': '30%'}" /></td>
+           </tr>
+           <tr>
+            <td>Billets</td> 
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val2" [style]="{'width': '20%'}" />
+             *20 DTN=
+            <input  pInputText id="matricule" type="number" placeholder="{{val2*20}}" [style]="{'width': '30%'}" /></td>
+
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val3" [style]="{'width': '20%'}" />
+             * 2 DTN =
+            <input  pInputText id="matricule" type="number" placeholder="{{val3*2}}" [style]="{'width': '30%'}" /></td>
+        </tr>
+        <tr>
+            <td>Billets</td> 
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val4" [style]="{'width': '20%'}" />
+             *10 DTN=
+            <input  pInputText id="matricule" type="number"  placeholder="{{val4*10}}"  [style]="{'width': '30%'}" /></td>
+
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val5"[style]="{'width': '20%'}" />
+             * 1  DTN =
+            <input  pInputText id="matricule" type="number" placeholder="{{val5}}"  [style]="{'width': '30%'}" /></td>
+        </tr>
+        <tr>
+            <td>Billets</td> 
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val6"[style]="{'width': '20%'}" />
+             * 5 DTN =
+            <input  pInputText id="matricule" type="number" placeholder="{{val6*5}}" [style]="{'width': '30%'}" /></td>
+
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val7" [style]="{'width': '20%'}" />
+             *0.5 DTN =
+            <input  pInputText id="matricule" type="number" placeholder="{{val7*0.5}}" [style]="{'width': '30%'}" /></td>
+        </tr>
+        <tr>
+            <td></td> 
+            <td></td>
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number"[(ngModel)]="val8" [style]="{'width': '20%'}" />
+             *0.2 DTN =
+            <input  pInputText id="matricule" type="number" placeholder="{{val8*0.2}}" [style]="{'width': '30%'}" /></td>
+        </tr>
+        <tr>
+            <td></td> 
+            <td></td>
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val9" [style]="{'width': '20%'}" />
+             * 0.1 DTN    =
+            <input  pInputText id="matricule" type="number" placeholder="{{val9*0.1}}" [style]="{'width': '30%'}" /></td>
+        </tr>
+        <tr>
+            <td></td> 
+            <td></td>
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val10" [style]="{'width': '20%'}" />
+             *0.05DTN=
+            <input  pInputText id="matricule" type="number" placeholder="{{val10*0.05}}" [style]="{'width': '30%'}" /></td>
+        </tr>
+        <tr>
+            <td></td> 
+            <td></td>
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val11" [style]="{'width': '20%'}" />
+             *0.02DTN=
+            <input  pInputText id="matricule" type="number" placeholder="{{val11*0.02}}" [style]="{'width': '30%'}" /></td>
+        </tr>
+        <tr>
+            <td></td> 
+            <td></td>
+            <td>Pièces</td>
+            <td><input  pInputText id="matricule" type="number" [(ngModel)]="val12" [style]="{'width': '20%'}" />
+             *0.01DTN=
+            <input  pInputText id="matricule" type="number" placeholder="{{val12*0.01}}" [style]="{'width': '30%'}" /></td>
+        </tr>
+        </ng-template>
+          </p-table>
+        <h3>Verification des montant Totale:</h3>
+        <p-table >
+            <ng-template pTemplate="header">
+            <tr>
+                <td> 
+                   <div class="field mt-3">
+                        <h5>Montant théorique :
+                            <input  pInputText id="matricule" [(ngModel)]="currentSession.montantSession" type="number"   />
+                        </h5>
+                     </div>
+           
+                 </td>
+                 <td>
+                    <div class="field mt-3">
+                        <h5>Montant réel :
+                            <input  pInputText id="mat" type="number"  name="MontantPratique" value="MontantPratique" placeholder="{{resultat}}"  />
+                            
+                        </h5>
+
+                     </div>
+                     <small *ngIf="currentSession.montantSession != resultat" class="text-danger"> Montant pratique doit étre égale au montant théorique</small>
+
+               </td>
+            </tr>
+            <br>
+            <tr>
+                <td><button pButton pRipple   icon="pi pi-arrow-left" type="button" label="Annuler" [routerLink]="['/session']" [style]="{'width': '70%'}" class="p-button-rounded p-button-secondary mr-2 mb-2"></button></td>
+                <td><button pButton pRipple  *ngIf="currentSession.montantSession == resultat" icon="pi pi-check" type="button" label="Valider" [style]="{'width': '80%'}" class="p-button-rounded p-button-success mr-2 mb-2" (click)="FermerSession(currentSession)"></button>
+                <button pButton pRipple  *ngIf="currentSession.montantSession != resultat"  icon="pi pi-check" type="button" label="Valider" [style]="{'width': '80%'}" class="p-button-rounded p-button-success mr-2 mb-2" disabled></button>
+
+                </td>
+
+
+            </tr>
+        </ng-template>
+          </p-table>
+ 
+      
+</div>

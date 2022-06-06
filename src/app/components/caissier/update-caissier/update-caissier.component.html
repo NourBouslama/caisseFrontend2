@@ -1,0 +1,56 @@
+<form [formGroup]="confirm">
+<div class="grid p-fluid">
+	<div class="col-12">
+		<div class="card">
+            <p-table >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th ><button  class="p-button-secondary p-button-text mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/Caissier']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Modifier Caissier</h3></th>
+                    </tr>
+                    </ng-template></p-table>
+			<h5>Matricule :</h5>
+			<span class="p-float-label">
+				<input pInputText id="matricule" type="text"  [(ngModel)]="currentCaissier.matricule"  formControlName="matricule"/>
+				<small *ngIf="confirm.get('matricule').invalid " class="text-danger">Matricule obligatoire</small>
+
+
+			</span>
+            <h5>Nom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="nom" type="text"  [(ngModel)]="currentCaissier.nom"  formControlName="nom"/>
+				<small *ngIf="confirm.get('nom').invalid " class="text-danger">nom obligatoire</small>
+
+			</span>
+            <h5>Prénom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="prenom" type="text"  [(ngModel)]="currentCaissier.prenom"  formControlName="prenom"/>
+				<small *ngIf="confirm.get('prenom').invalid" class="text-danger">prenom obligatoire</small>
+
+			</span>
+            <h5>Email :</h5>
+			<span class="p-float-label">
+				<input pInputText id="email" type="email"  [(ngModel)]="currentCaissier.email"  formControlName="email"/>
+				<small *ngIf="confirm.get('email').invalid" class="text-danger">email obligatoire</small>
+
+			</span>
+            <h5>Adresse :</h5>
+			<span class="p-float-label">
+				<input pInputText id="adresse" type="text"  [(ngModel)]="currentCaissier.adresse"  formControlName="adresse" />
+				<small *ngIf="confirm.get('adresse').invalid " class="text-danger"><Address></Address> Adresse obligatoire</small>
+
+			</span>
+<br><br>
+<br>
+<br>
+
+      <button pButton pRipple   type="button" label="Modifier" type="submit" [style]="{'width': '40%'}"  (click)="modifierCaissier()" icon="pi pi-pencil" class="p-button-rounded p-button-warning" [disabled]="confirm.invalid"></button>
+
+
+
+		   
+		</div>
+
+	</div>
+	</div>
+</form>

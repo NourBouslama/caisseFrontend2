@@ -1,0 +1,57 @@
+<form [formGroup]="confirm">
+<div class="grid p-fluid">
+	<div class="col-12 ">
+		<div class="card">
+            <p-table >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th ><button  class="p-button-secondary p-button-text mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/Agent']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Modifier Agent</h3></th>
+                    </tr>
+                    </ng-template></p-table>
+			<h5>Matricule :</h5>
+			<span class="p-float-label">
+				<input pInputText id="matricule" type="text"  [(ngModel)]="currentAgent.matricule" formControlName="matricule" required/>
+				<small *ngIf="confirm.get('matricule').invalid " class="text-danger">Matricule obligatoire</small>
+
+			</span>
+            <h5>Nom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="nom" type="text"  [(ngModel)]="currentAgent.nom"formControlName="nom"/>
+				<small *ngIf="confirm.get('nom').invalid" class="text-danger">Nom obligatoire</small>
+
+			</span>
+            <h5>Prénom :</h5>
+			<span class="p-float-label">
+				<input pInputText id="prenom" type="text"  [(ngModel)]="currentAgent.prenom" formControlName="prenom"/>
+				<small *ngIf="confirm.get('prenom').invalid" class="text-danger">Prenom obligatoire</small>
+
+			</span>
+            <h5>Email :</h5>
+			<span class="p-float-label">
+				<input pInputText id="email" type="email"  [(ngModel)]="currentAgent.email" formControlName="email"/>
+				<small *ngIf="confirm.get('email').invalid " class="text-danger">Email obligatoire</small>
+
+			</span>
+            <h5>Adresse :</h5>
+			<span class="p-float-label">
+				<input pInputText id="adresse" type="text"  [(ngModel)]="currentAgent.adresse" formControlName="adresse" />
+				<small *ngIf="confirm.get('adresse').invalid" class="text-danger">Adresse obligatoire</small>
+
+			</span>
+            <h5>Secteur :</h5>
+			<span class="p-float-label">
+				<input pInputText id="secteur" type="text" [(ngModel)]="currentAgent.secteur" formControlName="secteur" />
+				<small *ngIf="confirm.get('secteur').invalid " class="text-danger">Secteur obligatoire</small>
+
+			</span>
+<br><br>
+<br>
+<br>
+            <button pButton pRipple type="button" label="Modifier" type="submit"  [style]="{'width': '40%'}"   icon="pi pi-pencil" (click)="modifierAgent()" class="p-button-rounded p-button-warning" [disabled]="confirm.invalid"></button>
+		</div>
+
+
+	</div>
+</div>
+</form>

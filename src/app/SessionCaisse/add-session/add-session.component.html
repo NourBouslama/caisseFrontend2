@@ -1,0 +1,78 @@
+<div class="grid p-fluid">
+    <div class="col-12">
+        <p-dialog   position="top" header="Title" [(visible)]="display3"  [style]="{height:'14vw',width: '35vw'}">
+            <ng-template pTemplate="header">
+                <h3>Alert</h3>
+            </ng-template>
+            <h5> Vous avez déja fermer le journal de caisse 
+
+                 </h5>
+            <ng-template pTemplate="footer">
+                <button pButton  pRipple  type="button"    iconPos="right" class="p-button-rounded p-button-danger" label="ok" (click)="clickAlert()"></button>
+
+            </ng-template> 
+        </p-dialog>
+
+
+        <p-dialog   position="top" header="Title" [(visible)]="display"  [style]="{height:'14vw',width: '35vw'}">
+            <ng-template pTemplate="header">
+                <h3>Alert</h3>
+            </ng-template>
+            <h5> Il y a déja une session ouverte sur cette caisse  </h5>
+            <ng-template pTemplate="footer">
+                <button pButton  pRipple  type="button"  icon="pi pi-check"  iconPos="right" class="p-button-rounded p-button-warning" label="ok" (click)="clickAlert()"></button>
+
+            </ng-template> 
+        </p-dialog>
+        <p-dialog   position="top" header="Title" [(visible)]="display2"  [style]="{height:'14vw',width: '35vw'}">
+            <ng-template pTemplate="header">
+                <h3>Alert</h3>
+            </ng-template>
+            <h5> Vous avez déja une session ouverte</h5>
+            <ng-template pTemplate="footer">
+                <button pButton  pRipple  type="button"  icon="pi pi-check"  iconPos="right" class="p-button-rounded p-button-warning" label="ok" (click)="clickAlert()"></button>
+
+            </ng-template> 
+        </p-dialog>
+        <div class="card">
+            <p-table>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th ><button  class="p-button-secondary p-button-text mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/session']" > Retour</button></th>
+                        <th colspan="6"> <h3 class="mb-0">Nouvelle session de caisse</h3></th>
+                    </tr>
+                    </ng-template>
+            </p-table>
+    
+            <br>
+
+            <form [formGroup]="addSess">
+                <h5>Sélectionner le numéro de caisse</h5>
+                <p-dropdown [options]="caisses" [(ngModel)]="newSession.caisse" optionLabel="numC" [showClear]="true" placeholder="Num caisse" formControlName="numCaisse" >
+     
+                    <ng-template let-caisse pTemplate="item">
+                        <div class="country-item">
+                            <div>{{caisse.numC}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            <br>
+    
+         
+                <h5>Montant de caisse</h5>
+                <span class="p-float-label">
+                    <input formControlName="montant" class="form-control"  pInputText id="montant" name="montant" type="number" [(ngModel)]="newSession.montantInit"  required />
+                    <small *ngIf="addSess.get('montant').invalid && addSess.get('montant').touched" class="text-danger"> Montant est obligatoire</small>
+                </span>
+                <br><br>
+                <span>
+                    <button pButton pRipple label="ajouter" type="submit" icon="pi pi-plus" [disabled]="addSess.invalid"
+                            class="p-button-rounded p-button-primary" (click)="ajouterSession()" [style]="{'width': '30%'}" ></button>
+     
+                </span>
+
+            </form>
+       
+        </div>
+    </div>
+</div>

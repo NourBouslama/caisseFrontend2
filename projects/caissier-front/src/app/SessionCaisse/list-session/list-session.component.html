@@ -1,0 +1,66 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Session Caisse</h5>
+            <p-table  [value]="sessionCaisses" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                        <h2>Liste les sessions de  caisses</h2>
+                        <td><button pButton pRipple label="Nouvelle session" type="button" icon="pi pi-plus"
+                                class="p-button-rounded p-button-primary" routerLink="/add-session"></button></td>
+
+                    </div>
+                    <p-dialog position="top"  header="Title" [(visible)]="display"  [style]="{height:'16vw',width: '35vw'}">
+                        <ng-template pTemplate="header">
+                            <h3>Alert</h3>
+                        </ng-template>
+                        <h5> Il y a déja une session ouverte sur cette caisse  </h5>
+                        <ng-template pTemplate="footer">
+                            <button pButton  pRipple  type="button"  icon="pi pi-check"  iconPos="right" class="p-button-rounded p-button-warning" label="ok" (click)="clickAlert()"></button>
+          
+                        </ng-template> 
+                    </p-dialog> 
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Numéro caisse</th>
+                        <!--
+             <th>Nom caissier</th>
+                        -->
+           
+                        <th>Date ouverture</th>
+                        <th>Date fermeture</th>
+                        <th>Etat</th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-session>
+                    <tr>
+                        <td>{{session.caisse.numC}}</td>
+                        <!--
+      <td>{{session.caissier.nom}}</td>
+                        -->
+                  
+                        <td>{{session.dateOuverture | date:'dd/MM/YYYY  HH:mm'}}</td>
+                        <td>{{session.datefermeture | date:'dd/MM/YYYY  HH:mm'}}</td>
+                        <td>{{session.etat}}</td>
+                        <td><button *ngIf="session.etat ==='en cours'" pButton pRipple type="button" label="fermer"
+                                icon="pi pi-power-off" class="p-button-rounded p-button-success" [routerLink]="['/fermer-session',session.numS]"></button>
+                            <button *ngIf="session.etat === 'fermer'" pButton pRipple type="button" label="ouvrir"
+                            icon="pi pi-power-off" class="p-button-rounded p-button-secondary" (click)="ouvrirSession(session)" routerLink="/session" ></button>
+                        </td>
+                        
+                        <td><button pButton pRipple [routerLink]="['/consulter-session',session.numS]"  icon="pi pi-external-link" type="button" label="Consulter" class="p-button-rounded p-button-info mr-2 mb-2"></button></td>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        In total there are {{sessionCaisses ? sessionCaisses.length : 0 }} sessions.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+      
+    </div>
+</div>

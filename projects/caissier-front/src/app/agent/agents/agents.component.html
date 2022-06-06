@@ -1,0 +1,48 @@
+<div class="col-12">
+    <div class="card">
+
+        <p-table [value]="agents">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th ><button  class="p-button-help mr-2 mb-2"  pButton pRipple type="button" [routerLink]="['/ajouterAgents']" >Ajouter</button></th> <th colspan="6"> <h3 class="mb-0">Liste des Agents des coupures</h3></th>
+                </tr>
+                <tr>
+                        <th scope="col">matricule</th>
+                        <th scope="col">nom</th>
+                        <th scope="col">prenom</th>
+                        <th scope="col">etat</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-agt >
+                <tr>
+                    <td>
+                      {{agt.matricule}}
+                    </td>
+                    <td>
+                     {{agt.nom}}
+                   </td>
+                   <td>
+                     {{agt.prenom}}
+                   </td>
+                   <td>
+                     {{agt.etat}}
+                   </td>
+                   <td>
+                	<button pButton pRipple icon="pi pi-external-link" [routerLink]="['/consulterAgents',agt.matricule]"  type="button" label="Consulter" class="p-button-info mr-2 mb-2"></button></td>
+                   <td><button pButton pRipple type="button" label="Modifier" class="p-button-warning mr-2 mb-2" [routerLink]="['/modifierAgents',agt.matricule]" ></button></td>
+                  <td> <div *ngIf=" agt.etat== 'Activer'">
+                     <button pButton pRipple type="button" label="Désactiver" class="p-button-danger mr-2 mb-2" icon="pi pi-power-off" (click)="DesactiverAgent(agt)"></button>
+                    </div>
+                    <div *ngIf="agt.etat== 'Desactiver'">
+                     <button pButton pRipple type="button" label="Activer" class="p-button-success mr-2 mb-2"  icon="pi pi-power-off" (click)="ActiverAgent(agt)"></button>
+                    </div>
+                   </td>
+                     </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+

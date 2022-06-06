@@ -1,0 +1,93 @@
+<div class="col-12">
+  <div class="card">
+    <h5>Agent de coupure</h5>
+    <p-toast position="top-right" key="myKey1"></p-toast>
+
+
+    <p-dialog   position="top" header="Title" [(visible)]="display"  [style]="{height:'14vw',width: '30vw'}">
+      <ng-template pTemplate="header">
+          <h3>Alert</h3>
+      </ng-template>
+      <h6>
+          <strong> Etes-vous sûr ? <br>
+            
+         </strong>
+      </h6>
+      
+      <ng-template pTemplate="footer">
+        <button pButton  pRipple  type="button"    iconPos="right" class="p-button p-button-warning" label="Annuler" (click)="clickAlert()"></button>
+          <button pButton  pRipple  type="button"    iconPos="right" class="p-button p-button-danger" label="Ok" (click)="valider()"></button>
+         
+
+      </ng-template> 
+  </p-dialog>
+
+    <p-table [value]="agents">
+      <ng-template pTemplate="header">
+        <tr>
+
+          <th colspan="6">
+            <h3 class="mb-0">Liste des Agents des coupures</h3>
+          </th>
+          <td><button pButton pRipple label="Nouvelle agent" type="button" icon="pi pi-user-plus"
+              class="p-button-rounded p-button-primary" routerLink="/add-agent"></button></td>
+        </tr>
+        <tr>
+          <th scope="col">Matricule</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Etat</th>
+      
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-agt>
+        <tr>
+          <td>
+            {{agt.matricule}}
+          </td>
+          <td>
+            {{agt.prenom}}
+          </td>
+          <td>
+            {{agt.nom}}
+          </td>
+          <td>
+            {{agt.etat}}
+          </td>
+        
+
+          <td>
+
+            <div *ngIf="agt.etat== 'activé'">
+              <button pButton pRipple type="button" label="Désactiver"
+                class=" p-button-rounded p-button-secondary mr-2 mb-2" 
+                (click)="DesactiverAgent(agt)"></button>
+            </div>
+            <div *ngIf="agt.etat== 'desactivé'">
+              <button pButton pRipple type="button" label="Activer" class="p-button-rounded p-button-success mr-2 mb-2"
+                icon="pi pi-power-off" (click)="ActiverAgent(agt)"></button>
+            </div>
+          </td>
+
+
+
+          <td><button pButton pRipple type="button" label="Modifier" icon="pi pi-user-edit" class="p-button-rounded p-button-warning mr-2 mb-2"
+            [routerLink]="['/Update-agent',agt.idU]"></button>
+        </td>
+          <td>
+            <button pButton pRipple icon="pi pi-external-link" [routerLink]="['/consulter-agent',agt.idU]"
+              type="button" label="Consulter" class="p-button-rounded p-button-info mr-2 mb-2"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+           Totalement il y a {{agents ? agents.length : 0 }} agents.
+        </div>
+    </ng-template>
+    </p-table>
+  </div>
+</div>

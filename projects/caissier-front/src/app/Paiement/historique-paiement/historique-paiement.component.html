@@ -1,0 +1,56 @@
+<div class="col-12">
+    <div class="card">
+      <h5>Paiement</h5>
+        <p-table [value]="paiements">
+            <ng-template pTemplate="header">
+                <tr>
+                     <th colspan="2">  <h2 class="mb-0">Historique des Paiements</h2>  </th>
+                </tr>
+                <tr>
+                        <th scope="col">Date de Paiement</th>
+                        <!--
+  <th scope="col">References des factures payés</th>
+                        -->
+                        <th scope="col">Etat</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Mode de Paiement</th>
+
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-paie >
+                <tr>
+
+                    <td>
+                      {{paie.dateP|date:'dd/MM/YYYY  HH:mm'}}
+                    </td>
+                    <!--
+ <td>
+                      <p-listbox [options]="paie.factures"  optionLabel="name" readonly>
+                        <ng-template let-fact pTemplate="item">
+                            <div class="country-item" readonly>
+                                <div>{{fact.IdF}}</div>
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                     
+                    </td>
+                    -->
+                   
+                  
+                    <td>
+                     {{paie.etat}}
+                   </td>
+                   <td>
+                    {{paie.encaissement.montantE}}
+                   </td>
+                   <td>
+                     {{paie.modePaiement}}
+                   </td>
+
+
+                     </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
